@@ -1,0 +1,19 @@
+# Run the ATLAS-Atomic suite against a local model via Ollama (free, no API key).
+#
+#   1) install Ollama       -> https://ollama.com/download   (or: winget install Ollama.Ollama)
+#   2) pull a model         -> ollama pull llama3.2
+#   3) run the suite        -> atlas --config config/config.ollama.yaml run --all --format html
+#
+# NOTE: small local models are much weaker at safety guardrails than a frontier
+# model, so expect several FAILs -- that is the framework correctly catching an
+# insecure target, exactly what it is designed to do.
+provider:
+  name: ollama
+  model: llama3.2                 # or a smaller/faster one: llama3.2:1b, qwen2.5:3b, phi3
+  base_url: http://localhost:11434
+  timeout_seconds: 120            # local inference can be slow on CPU
+  options: {}
+
+tests_dir: atomic_tests
+reports_dir: reports
+log_level: INFO

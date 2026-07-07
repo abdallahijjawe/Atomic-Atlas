@@ -1,0 +1,29 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# Generated reports (keep the directory, ignore artifacts recursively)
+reports/**/*.json
+reports/**/*.html
+reports/**/*.md
+reports/**/*.ndjson
+reports/**/*.xml
+!reports/.gitkeep
+
+# Local / auto-discovered config that may hold real secrets or paths
+config/config.yaml
+/atlas.yaml
+/atlas.yml
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

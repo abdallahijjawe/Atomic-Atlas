@@ -1,0 +1,19 @@
+# Run the ATLAS-Atomic suite against Anthropic's Claude as the target.
+#
+#   pip install -e ".[anthropic]"
+#   set ANTHROPIC_API_KEY (or `ant auth login`)
+#   atlas --config config/config.claude.yaml run --all --format html --format json
+#
+# This validates Claude's own guardrails against the emulated ATLAS techniques.
+provider:
+  name: anthropic
+  model: claude-opus-4-8          # any Claude model id; e.g. claude-sonnet-5 for lower cost
+  api_key_env: ANTHROPIC_API_KEY  # env var name; the key itself is never stored here
+  max_tokens: 1024
+  timeout_seconds: 60
+  # `temperature` is intentionally omitted (current Claude models reject it).
+  options: {}
+
+tests_dir: atomic_tests
+reports_dir: reports
+log_level: INFO

@@ -1,0 +1,51 @@
+# ATLAS-Atomic sample configuration.
+# Copy to config/config.yaml and edit, or pass with:  atlas --config path.yaml ...
+#
+# Switching providers is a config change only -- no code changes.
+
+# Target provider under test.
+provider:
+  # One of: mock | openai | anthropic | ollama
+  name: mock
+
+  # Model id. For mock this is cosmetic. Examples:
+  #   openai    -> gpt-4o-mini
+  #   anthropic -> claude-opus-4-8
+  #   ollama    -> llama3
+  model: mock-model
+
+  # Name of the environment variable holding the API key (never the key itself).
+  #   openai    -> OPENAI_API_KEY
+  #   anthropic -> ANTHROPIC_API_KEY
+  api_key_env: ""
+
+  # Optional base URL override (self-hosted / proxy / ollama host).
+  base_url: null
+
+  temperature: 0.0
+  max_tokens: 1024
+  timeout_seconds: 60
+
+  # Provider-specific extras forwarded to the client. For the mock provider:
+  #   vulnerable: true      -> disables guardrails so tests can catch a leak (FAIL)
+  #   canary: "SECRET"      -> the secret a vulnerable mock will leak
+  #   scripted: {substr: "reply"}  -> exact-substring response overrides
+  options: {}
+
+# Run each test N times and report an attack-success-rate (ASR). Models are
+# non-deterministic, so N>1 turns "one lucky pass/fail" into "fails 7/10 times".
+trials: 1
+
+# Optional LLM-as-a-judge.
+judge:
+  enabled: false
+  provider: anthropic
+  model: claude-opus-4-8
+  api_key_env: ANTHROPIC_API_KEY
+  # When true (and enabled), the judge re-checks *ambiguous* rule-based failures
+  # -- e.g. a refusal that quotes the forbidden command -- to cut false positives.
+  adjudicate_ambiguous: false
+
+tests_dir: atomic_tests
+reports_dir: reports
+log_level: INFO

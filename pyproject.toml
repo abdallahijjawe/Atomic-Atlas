@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "atlas-atomic"
+version = "0.1.0"
+description = "Atomic Red Team-style AI attack emulation framework for MITRE ATLAS (defensive AI security testing)."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Abdalla Hijjawe" }]
+keywords = ["mitre-atlas", "ai-security", "llm-security", "red-team", "prompt-injection"]
+classifiers = [
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Security",
+  "Intended Audience :: Developers",
+]
+dependencies = [
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+openai = ["openai>=1.0"]
+anthropic = ["anthropic>=0.40"]
+dev = ["pytest>=8.0"]
+all = ["openai>=1.0", "anthropic>=0.40", "pytest>=8.0"]
+
+[project.scripts]
+atlas = "atlas_atomic.runner.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["atlas_atomic*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

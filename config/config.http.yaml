@@ -1,0 +1,45 @@
+# Test your OWN chat application over HTTP -- no code required.
+# The `http` provider is driven entirely by the options below.
+#
+#   atlas --config config/config.http.yaml run --all
+#
+# --- Example A: a simple app ---------------------------------------------
+#   POST https://my-app.internal/chat   body {"message": "..."}
+#   response {"reply": "..."}
+# The defaults (prompt_field=message, response_path=reply) already match this,
+# so `options: {}` is enough.
+provider:
+  name: http
+  base_url: https://my-app.internal/chat
+  timeout_seconds: 60
+  options: {}
+
+# --- Example B: an OpenAI-compatible / bearer-auth endpoint --------------
+# Uncomment and adapt:
+#
+# provider:
+#   name: http
+#   base_url: https://gateway.internal/v1/chat/completions
+#   api_key_env: MY_API_KEY            # {api_key} in headers is replaced with its value
+#   model: my-model
+#   options:
+#     headers:
+#       Authorization: "Bearer {api_key}"
+#       Content-Type: application/json
+#     prompt_field: ""                 # disable single-prompt mode
+#     messages_field: messages         # send full OpenAI-style history instead
+#     model_field: model               # inject the model id into the body
+#     response_path: choices.0.message.content
+#
+# --- Example C: a nested request/response shape --------------------------
+# provider:
+#   name: http
+#   base_url: https://my-app/api/converse
+#   options:
+#     prompt_field: input.text         # -> {"input": {"text": "<prompt>"}}
+#     response_path: data.answer        # <- {"data": {"answer": "..."}}
+#     extra_body: { session: "atlas-test", stream: false }
+
+tests_dir: atomic_tests
+reports_dir: reports
+log_level: INFO

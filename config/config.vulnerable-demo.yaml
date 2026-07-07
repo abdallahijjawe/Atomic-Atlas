@@ -1,0 +1,16 @@
+# Demo config that puts the mock target into "vulnerable" mode: guardrails are
+# disabled so it complies with attacks and leaks the planted canary. Running the
+# suite against this config produces FAIL verdicts -- proving the tests can
+# actually catch an insecure target.
+#
+#   atlas --config config/config.vulnerable-demo.yaml run --all
+provider:
+  name: mock
+  model: mock-model-vulnerable
+  options:
+    vulnerable: true
+    canary: CANARY-SYS-PROMPT-7F3A
+
+tests_dir: atomic_tests
+reports_dir: reports
+log_level: INFO

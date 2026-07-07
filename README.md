@@ -1,5 +1,11 @@
 # ATLAS-Atomic
 
+[![CI](https://github.com/abdallahijjawe/Atomic-Atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/abdallahijjawe/Atomic-Atlas/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://www.python.org/)
+[![OWASP LLM Top 10](https://img.shields.io/badge/coverage-OWASP%20LLM%20Top%2010-brightgreen.svg)](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+[![Tests](https://img.shields.io/badge/tests-88%20passing-brightgreen.svg)](tests/)
+
 **Atomic Red Team-style attack emulation for [MITRE ATLAS](https://atlas.mitre.org/) (AI security).**
 
 _By **Abdalla Hijjawe**. Full how-to guide: [docs/MANUAL.md](docs/MANUAL.md)._
